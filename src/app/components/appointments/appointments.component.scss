@@ -12,3 +12,6 @@
     top: 12px;
     left: 36px;
 }
+::ng-deep .datepicker-default .day-unit.is-selected {
+    background: #007BFF !important;
+}

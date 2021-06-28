@@ -11,7 +11,7 @@ import { SignupComponent } from './components/signup/signup.component';
 import { LoginComponent } from './components/login/login.component';
 import { AppointmentsComponent } from './components/appointments/appointments.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatDatepickerModule} from '@angular/material/datepicker';
+import { DatepickerModule } from 'ng2-datepicker';
 
 import { UserService } from 'src/app/services';
 
@@ -27,10 +27,10 @@ import { UserService } from 'src/app/services';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatDatepickerModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    DatepickerModule
   ],
   providers: [UserService],
   bootstrap: [AppComponent]

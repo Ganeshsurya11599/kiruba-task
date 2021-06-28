@@ -39,6 +39,8 @@ export class AppointmentsComponent implements OnInit {
     }
   ]
 
+  date = new Date();
+
   ngOnInit(): void {
   }
 
