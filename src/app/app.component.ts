@@ -9,12 +9,15 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class AppComponent implements OnInit{
   title = 'doctor';
   routeUrl: string | undefined;
-
+  localData=localStorage.getItem("token") 
+  
   constructor(
     private router: Router,
   ){}
 
   ngOnInit(){
+  
+
   this.routeUrl = this.router.config[0].path;
   console.log(this.routeUrl);
 }
