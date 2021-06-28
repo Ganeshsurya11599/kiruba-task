@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -8,14 +8,20 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class AppComponent implements OnInit{
   title = 'doctor';
-  routeUrl: string | undefined;
+  routeUrl: any;
+  currentRoute: any;
 
   constructor(
     private router: Router,
-  ){}
+  ){
+    router.events.subscribe((event: any) => {
+      if (event instanceof NavigationEnd ) {
+        this.routeUrl = event.url;
+        console.log(this.routeUrl);
+      }
+    });
+   }
 
   ngOnInit(){
-  this.routeUrl = this.router.config[0].path;
-  console.log(this.routeUrl);
 }
 }
