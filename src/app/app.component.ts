@@ -8,9 +8,9 @@ import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 })
 export class AppComponent implements OnInit{
   title = 'doctor';
-  routeUrl: any;
-  currentRoute: any;
-
+  routeUrl: string | undefined;
+  localData=localStorage.getItem("token") 
+  
   constructor(
     private router: Router,
   ){
@@ -23,5 +23,7 @@ export class AppComponent implements OnInit{
    }
 
   ngOnInit(){
+  this.routeUrl = this.router.config[0].path;
+  console.log(this.routeUrl);
 }
 }
