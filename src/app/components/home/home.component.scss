@@ -51,7 +51,7 @@
 .min-box{
     height: 35px;
     width: 113px;
-    background: rgb(224, 44, 44,0.5);
+    background-color: rgba(224, 44, 44,0.5);
     padding: 6px 0px 0px 25px;
     color: darkred;
 }
@@ -68,4 +68,8 @@
     -webkit-transform: translate(0,-10px);
     transform: translate(0,-10px);
     background: white !important;
+}
+.not-arrived{
+    background-color: rgba(57, 102, 201, 0.5) !important;
+    color: rgb(8, 78, 170) !important;
 }

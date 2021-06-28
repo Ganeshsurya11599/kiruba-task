@@ -26,4 +26,18 @@ export class AppComponent implements OnInit{
   this.routeUrl = this.router.config[0].path;
   console.log(this.routeUrl);
 }
+
+appoint(){
+  this.router.navigate(["/appointments"]);
+}
+
+walkin(){
+  this.router.navigate(["/home"]);
+}
+
+logout(){
+  localStorage.removeItem('userDetails');
+  this.router.navigate(["/login"]);
+}
+
 }

@@ -35,7 +35,11 @@ export class LoginComponent implements OnInit {
     let postData=this.loginform.value
     this.serviceUser.loginUser(postData).subscribe((Resp:any)=>{
       if(Resp && Resp?.token){
-        localStorage.setItem('token',JSON.stringify(Resp.token));
+        const payload = {
+          token:Resp.token,
+          id:Resp?.user?._id
+        }
+        localStorage.setItem('userDetails',JSON.stringify(payload));
         this.router.navigate(['/home'])
       }
     })

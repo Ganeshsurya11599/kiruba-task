@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 export class UserService {
 
   baseURL="http://localhost:4000/api"
+  // baseURL = "http://b1f960724ed4.ngrok.io/api"
   constructor(
     private http:HttpClient,
   ) { }
@@ -21,5 +22,16 @@ export class UserService {
     return this.http.post(this.baseURL+'/user/login',postData)
   }
 
+  getSlots(payload:any){
+    return this.http.post(this.baseURL + "/slot/findSlots", payload);
+  }
+
+  addSlots(payload:any){
+    return this.http.post(this.baseURL + "/slot/create", payload);
+  }
+
+  getPatients(payload:any){
+    return this.http.post(this.baseURL + "/slot/slotsByUser", payload);
+  }
 
 }

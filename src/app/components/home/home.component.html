@@ -27,33 +27,43 @@
           <th scope="col" colspan="2"></th>
         </tr>
       </thead>
-      <ng-container *ngFor="let data of response">
-      <tbody class="tbody">
+      <ng-container *ngIf="selectedTabName != 'Queu'">
+        <tbody>
+            <tr class="text-center mt-2">
+                <td colspan="7">
+                    <p class="text-center text-secondary" style="font-size: 16px;font-weight: bold;">No Data Found</p>
+                </td>
+            </tr>
+        </tbody>
+    </ng-container>
+      <ng-container *ngFor="let data of patient;let i = index;">
+     <ng-container *ngIf="patient.length > 0">
+        <tbody class="tbody">
             <tr>
                 <th scope="row">
-                  <p class="text-secondary m-0" style="margin-top: 5px !important;">..</p> 
-                  <p class="text-secondary m-0" style="margin-top: -18px !important;">..</p> 
-                  <p class="text-secondary m-0" style="margin-top: -18px !important;">..</p> 
+                  <p class="text-secondary m-0" style="margin-top: 5px !important;font-size: 14px;">..</p> 
+                  <p class="text-secondary m-0" style="margin-top: -14px !important;font-size: 14px;">..</p> 
+                  <p class="text-secondary m-0" style="margin-top: -14px !important;font-size: 14px;">..</p> 
                 </th>
                 <th>
                     <div class="color-box">
-                        {{data?.no}}
+                        {{i + 1}}
                     </div>
                 </th>
                 <td>
                   <div class="d-flex">
                       <img src="../assets/doctor.png" class="dprof">
-                     <p>{{data?.name}}</p>
+                     <p>{{data?.bookedBy?.name}}</p>
                     </div>
-                <p class="text-secondary d-block subtext">{{data?.desc}}</p>
+                <p class="text-secondary d-block subtext">{{data?.bookedBy?.gender}}, {{data?.bookedBy?.age}} yr</p>
                 </td>
                 <td>
-                    <p class="text-secondary m-0" style="margin-top: 13px !important;">{{data?.contact}}</p>
+                    <p class="text-secondary m-0" style="margin-top: 13px !important;">{{data?.bookedBy?.contact}}</p>
                 </td>
-                <td><p class="text-secondary m-0" style="margin-top: 13px !important;">{{data?.appointment}}</p></td>
+                <td><p class="text-secondary m-0" style="margin-top: 13px !important;">{{data?.slotDate}}</p></td>
                 <td>
-                    <div class="min-box">
-                        {{data?.waited}}
+                    <div class="min-box" [ngClass]="{'not-arrived':data?.bookedBy?.waited === 'Not Arrived'}">
+                        {{data?.bookedBy?.waited}}
                     </div></td>
                 <td>
                   <button class="custom-btn shadow ml-5 text-secondary">
@@ -63,6 +73,7 @@
                 <td><p class="text-secondary m-0" style="font-size: 21px;font-weight: bold;">...</p></td>
               </tr>
       </tbody>
+     </ng-container>
     </ng-container>
     </table>
     </div>

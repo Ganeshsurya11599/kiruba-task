@@ -14,6 +14,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DatepickerModule } from 'ng2-datepicker';
 
 import { UserService } from 'src/app/services';
+import { AmazingTimePickerModule } from 'amazing-time-picker';
+import { TimepickerComponent } from './components/timepicker/timepicker.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -21,7 +24,8 @@ import { UserService } from 'src/app/services';
     HomeComponent,
     SignupComponent,
     LoginComponent,
-    AppointmentsComponent
+    AppointmentsComponent,
+    TimepickerComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +34,9 @@ import { UserService } from 'src/app/services';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    DatepickerModule
+    DatepickerModule,
+    AmazingTimePickerModule,
+    MatDialogModule
   ],
   providers: [UserService],
   bootstrap: [AppComponent]

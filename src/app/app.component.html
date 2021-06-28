@@ -1,4 +1,4 @@
-    <nav class="navbar navbar-expand-lg custom-nav p-0 shadow" *ngIf="routeUrl != '/login'">
+    <nav class="navbar navbar-expand-lg custom-nav p-0 shadow" *ngIf="routeUrl != '/login' && routeUrl != '/signup'">
        <div class="bg-primary text-center p-2 col-2" style="height: 64px;">
         <a class="navbar-brand text-white pt-2" href="#">DOCTOR</a>
        </div>
@@ -13,11 +13,6 @@
                  aria-haspopup="true" aria-expanded="false">
                  Dr.Nishant Clinic
                </a>
-               <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                 <a class="dropdown-item" href="#">Action</a>
-                 <a class="dropdown-item" href="#">Another action</a>
-                 <a class="dropdown-item" href="#">Something else here</a>
-               </div>
              </li>
            </ul>
           </div>
@@ -32,11 +27,6 @@
                 aria-haspopup="true" aria-expanded="false">
                 Today
               </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <a class="dropdown-item" href="#">Something else here</a>
-              </div>
             </li>
           </ul>
          </div>
@@ -46,9 +36,10 @@
       </div>
       <div>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
-          <button class="custom-btn shadow text-primary">Appointments</button>
-          <button class="custom-btn shadow ml-5 text-primary">Walk-in</button>
+          <button class="custom-btn shadow text-primary" [ngClass]="{'active-btn':routeUrl === '/appointments'}" (click)="appoint()">Appointments</button>
+          <button class="custom-btn shadow ml-5 text-primary" [ngClass]="{'active-btn':routeUrl === '/home'}" (click)="walkin()">Walk-in</button>
           <i class="material-icons ml-5 text-secondary pointer">settings</i>
+          <button class="custom-btn shadow ml-5 text-danger" (click)="logout()">LogOut</button>
       </div>
       </div>
     

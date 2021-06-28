@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from 'src/app/services';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-home',
@@ -9,65 +11,46 @@ export class HomeComponent implements OnInit {
 
   selectedTabName:any;
 
-  constructor() { }
+  constructor(
+    private _service: UserService
+  ) { }
+
+  date = new Date();
 
   public tabName = [
-    { name:"Queu",value: "06" },
-    { name:"Earlier",value: "02" },
-    { name:"Wait List",value: "05" },
+    { name:"Queu",value: "0" },
+    { name:"Earlier",value: "0" },
+    { name:"Wait List",value: "0" },
     { name:"No Show",value: "0" }
   ]
 
-  public response = [
-    {
-      no:"1",
-      name:"Varun Bose",
-      desc:"Male, 32 yr",
-      contact:"7306985978",
-      appointment:"05:10pm",
-      waited:"56 Mins"
-    },
-    {
-      no:"2",
-      name:"Jhon Wick",
-      desc:"Male, 45 yr",
-      contact:"8015295125",
-      appointment:"04:30pm",
-      waited:"30 Mins"
-    },
-    {
-      no:"3",
-      name:"Jhony Ive",
-      desc:"Male, 31 yr",
-      contact:"7306985978",
-      appointment:"03:50pm",
-      waited:"25 Mins"
-    },
-    {
-      no:"4",
-      name:"Varun Bose",
-      desc:"Male, 32 yr",
-      contact:"7306985978",
-      appointment:"05:10pm",
-      waited:"56 Mins"
-    },
-    {
-      no:"5",
-      name:"Varun Bose",
-      desc:"Male, 32 yr",
-      contact:"7306985978",
-      appointment:"05:10pm",
-      waited:"56 Mins"
-    }
-  ]
+  public patient:any[] = [];
 
   ngOnInit(): void {
     this.selectedTabName = "Queu";
+    const formattedDate = moment(this.date).format('DD-MM-YYYY');
+    let getData = JSON.parse(localStorage.getItem('userDetails')!);
+    let payload = {
+      userId:getData?.id.toString(),
+      slotDate:formattedDate,
+      booked:true
+    }
+    this._service.getPatients(payload).subscribe((res:any) => {
+      console.log(res);
+      this.patient = res?.data;
+      this.tabName[0].value = res?.data.length;
+    })
   }
 
   onTabChange(tab:any){
     console.log(tab);
     this.selectedTabName = tab;
+    if(tab != "Queu"){
+      this.patient = [];
+    }
+    else {
+      this.ngOnInit();
+    }
   }
 
 }

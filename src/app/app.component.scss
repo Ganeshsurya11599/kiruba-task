@@ -26,7 +26,12 @@
     border: none;
     border-radius: 45px;
     font-weight: 500;
+    outline: none;
 }
 i.material-icons:hover:after {
     transform: scale(1);
+}
+.active-btn{
+    background: #007BFF !important;
+    color: white !important;
 }
